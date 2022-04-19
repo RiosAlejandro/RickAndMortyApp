@@ -1,0 +1,7 @@
+{
+  "name": "rickAndMorty",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
