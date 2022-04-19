@@ -1,43 +1,44 @@
-import { IonButton, IonCol, IonContent, IonGrid, IonRow, IonToolbar } from '@ionic/react';
-import * as React from 'react';
-import { InterfaceApi } from '../Data/InterfaceApi';
+import { IonButton, IonCol, IonGrid, IonRow } from '@ionic/react';
+
 
 export interface Props{
-    //prev: ()=> string | null
-    prev: string 
     next:  string 
-    funcionAnterior: ()=> void | null
-    funcionSiguiente: ()=> void 
+    prev:string
+    previo: ()=> void | null
+    siguiente: ()=> void 
 }
 
  
 
-const Paginacion = () => {
+const Paginacion = ({next, prev, siguiente, previo}: Props) => {
 
-    /*const anterior = () =>{
-        funcionAnterior();
+    const funcionAnterior = () =>{
+        previo();
     }
 
-    const siguiente = () =>{
-        funcionSiguiente();
-    }*/
+    const funcionSiguiente = () =>{
+        siguiente();
+    }
 
 
     return(
         
             <IonGrid>
                 <IonRow>
-                    
+                    {prev ?
                         <IonCol size='6' className='ion-text-end'>
-                            <IonButton  color="medium">Anterior</IonButton>
+                            <IonButton onClick={funcionAnterior}  color="medium">Anterior</IonButton>
                         </IonCol>
-                        
-                    
+                        :
+                        null
+                    }
+                    {next ?
                         <IonCol size='6'>
-                            <IonButton  color="medium">Siguiente</IonButton>
+                            <IonButton onClick={funcionSiguiente}  color="medium">Siguiente</IonButton>
                         </IonCol>
-                        
-                    
+                        :
+                        null
+                    }
                 </IonRow>
             </IonGrid>
         

@@ -1,5 +1,4 @@
-import { IonCard, IonCardHeader, IonCardTitle, IonContent, IonLabel } from '@ionic/react';
-import * as React from 'react';
+import { IonCard, IonCardHeader, IonCardTitle, IonLabel } from '@ionic/react';
 import { InterfaceApi } from '../Data/InterfaceApi';
 
 export interface Props{

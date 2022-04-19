@@ -12,9 +12,10 @@ const Home = () => {
 
 
     const [ personajes, setPersonajes] = useState<Array<InterfaceApi>>([]);
-    //const [botones, setBotones] = useState<Array<InterfaceApi["info"]>>([]);
-    const [botones, setBotones] = useState<InterfaceApi>();
-    
+    const [botonSiguiente, setBotonSiguiente] = useState<string>('');
+    const [botonPrevio, setBotonPrevio] = useState<string>('');
+
+
 
     const initialUrl = "https://rickandmortyapi.com/api/character";
 
@@ -23,11 +24,8 @@ const Home = () => {
             .then(res => res.json())
             .then((data) => {
                 setPersonajes(data.results);
-                setBotones(data.info);  
-                console.log(data);
-                console.log(botones);
-                console.log(data.info.next);
-                
+                setBotonSiguiente(data.info.next); 
+                setBotonPrevio(data.info.prev);
             })
             .catch(err => console.log(err))
             
@@ -38,27 +36,15 @@ const Home = () => {
         apiRickAndMorty(initialUrl);
     }, []);
     
-    console.log(botones?.info?.next);
-    
-    /*const funcionAnterior:()=> void = () =>{
-      const botonPrev = botones[0].info.prev;
-      apiRickAndMorty(botonPrev);
-      
-    };
 
-    const funcionSiguiente = () =>{
-        const botonNext = botones[1].next;
-        apiRickAndMorty(botonNext);
+    const funcionSiguiente = () => {
+        apiRickAndMorty(botonSiguiente);
     }
 
-    /*const botonPrev = () =>{
-       return botones[0].info.prev;
-    }*/
-
-    /*const botonNext = () =>{
-      const botonNex = botones[0].next ;
-      return botonNex;
-    }*/
+    const FuncionPrevia = () =>{
+        apiRickAndMorty(botonPrevio);
+    }
+    
 
 
   return (
@@ -67,11 +53,12 @@ const Home = () => {
       <Navegacion titulo='Rick and Morty App' />
       <IonContent fullscreen>
         
-        <Paginacion  />
+        <Paginacion next={botonSiguiente} prev={botonPrevio} siguiente={funcionSiguiente} previo={FuncionPrevia} />
         
         <Personajes results={personajes} />
 
-        {/*<Paginacion prev={botonNext} next={botonNext} funcionAnterior={funcionSiguiente} funcionSiguiente={funcionSiguiente} />*/}
+        <Paginacion next={botonSiguiente} prev={botonPrevio} siguiente={funcionSiguiente} previo={FuncionPrevia} />
+        
       </IonContent>
     </IonPage>
   );
