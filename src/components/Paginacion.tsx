@@ -25,20 +25,18 @@ const Paginacion = ({next, prev, siguiente, previo}: Props) => {
         
             <IonGrid>
                 <IonRow>
-                    {prev ?
-                        <IonCol size='6' className='ion-text-end'>
-                            <IonButton onClick={funcionAnterior}  color="medium">Anterior</IonButton>
-                        </IonCol>
-                        :
-                        null
-                    }
-                    {next ?
-                        <IonCol size='6'>
+                    <IonCol className='ion-text-center'>
+                        {prev ?
+                            <IonButton onClick={funcionAnterior}  color="medium">Anterior</IonButton> 
+                            :
+                            null
+                        }
+                        {next ?
                             <IonButton onClick={funcionSiguiente}  color="medium">Siguiente</IonButton>
-                        </IonCol>
-                        :
-                        null
-                    }
+                            :
+                            null
+                        }
+                    </IonCol>
                 </IonRow>
             </IonGrid>
         
